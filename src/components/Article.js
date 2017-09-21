@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import CommentsList from './CommentsList';
 
 export default class Article extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isOpen: true,
-    };
-    this.toggleOpen = this.toggleOpen.bind(this);
+  static propTypes = {
+    article: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string,
+    }).isRequired,
   }
+
+  state = {
+    isOpen: true,
+  };
 
   getBody() {
     if (!this.state.isOpen) return null;
@@ -21,7 +26,7 @@ export default class Article extends Component {
     );
   }
 
-  toggleOpen() {
+  toggleOpen = () => {
     this.setState({
       isOpen: !this.state.isOpen,
     });
