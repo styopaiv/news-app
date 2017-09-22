@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CommentsList from './CommentsList';
-import toggleOpenDecorator from '../decorators/toggleOpen';
 
 const Article = ({ article, isOpen, toggleOpen }) =>
   (
@@ -33,4 +32,4 @@ Article.propTypes = {
 };
 
 
-export default toggleOpenDecorator(Article);
+export default Article;
