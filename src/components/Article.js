@@ -29,6 +29,8 @@ Article.propTypes = {
     title: PropTypes.string.isRequired,
     text: PropTypes.string,
   }).isRequired,
+  isOpen: PropTypes.bool,
+  toggleOpen: PropTypes.func,
 };
 
 
