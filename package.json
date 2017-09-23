@@ -23,9 +23,10 @@
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "*",
+    "react-day-picker": "^6.1.0",
     "react-dom": "*",
     "react-select": "^1.0.0-rc.10",
-    "react-transition-group": "^2.2.0"
+    "react-transition-group": "^1.2.0"
   },
   "scripts": {
     "start": "webpack-dev-server --hot --inline",

@@ -3,6 +3,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import React, { Component } from 'react';
 import ArticleList from './ArticleList';
+import Calendar from './Calendar';
 
 export default class App extends Component {
   static propTypes = {
@@ -23,6 +24,7 @@ export default class App extends Component {
 
     return (
       <div>
+        <Calendar />
         <Select
           options={options}
           value={this.state.selection}
