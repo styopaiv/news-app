@@ -1,35 +1,17 @@
 import PropTypes from 'prop-types';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 import React, { Component } from 'react';
 import ArticleList from './ArticleList';
-import Calendar from './Calendar';
+import Filters from './Filters';
 
 export default class App extends Component {
   static propTypes = {
     articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
-  state = {
-    selection: null,
-  }
-
-  changeSelection = selection => this.setState({ selection });
-
   render() {
-    const options = this.props.articles.map(article => ({
-      label: article.title,
-      value: article.id,
-    }));
-
     return (
       <div>
-        <Calendar />
-        <Select
-          options={options}
-          value={this.state.selection}
-          onChange={this.changeSelection}
-        />
+        <Filters articles={this.props.articles} />
         <ArticleList articles={this.props.articles} />
       </div>
     );

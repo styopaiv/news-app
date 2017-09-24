@@ -9,12 +9,13 @@ export default class CommentForm extends Component {
 
     getClassName = (type) => {
       const checkMin = this.state[type].length < limits[type].min;
-      const checkMax = this.state[type].length > limits[type].max;
-      const result = this.state[type].length && (checkMin || checkMax) ? 'input-error' : '';
+      const result = this.state[type].length && checkMin ? 'input-error' : '';
       return result;
     };
 
     handleChange = type => (event) => {
+      const { value } = event.target;
+      if (value.length > limits[type].max) return;
       this.setState({
         [type]: event.target.value,
       });
