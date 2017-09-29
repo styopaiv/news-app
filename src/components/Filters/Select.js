@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import { connect } from 'react-redux';
 
-export default class App extends Component {
+class SelectComponent extends Component {
   state = {
     selection: null,
   }
@@ -21,8 +22,13 @@ export default class App extends Component {
           options={options}
           value={this.state.selection}
           onChange={this.changeSelection}
+          multi
         />
       </div>
     );
   }
 }
+
+export default connect(state => ({
+  articles: state.articles,
+}))(SelectComponent);
