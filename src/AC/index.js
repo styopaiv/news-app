@@ -1,4 +1,10 @@
-import { DELETE_ARTICLE, INCREMENT, RESET } from '../constants';
+import {
+  DELETE_ARTICLE,
+  INCREMENT,
+  RESET,
+  SELECT_ARTICLE,
+  PICK_DATES,
+} from '../constants';
 
 export const deleteArticle = id =>
   ({
@@ -14,4 +20,16 @@ export const increment = () =>
 export const reset = () =>
   ({
     type: RESET,
+  });
+
+export const selectArticle = selected =>
+  ({
+    type: SELECT_ARTICLE,
+    payload: selected,
+  });
+
+export const pickDates = range =>
+  ({
+    type: PICK_DATES,
+    payload: range,
   });

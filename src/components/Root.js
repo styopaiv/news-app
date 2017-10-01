@@ -9,3 +9,5 @@ export default () =>
       <App />
     </Provider>
   );
+
+console.log(store.getState());

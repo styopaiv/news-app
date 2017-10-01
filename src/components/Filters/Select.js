@@ -2,25 +2,23 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import { connect } from 'react-redux';
+import { selectArticle } from '../../AC';
 
 class SelectComponent extends Component {
-  state = {
-    selection: null,
+  changeSelection = (selected) => {
+    this.props.selectArticle(selected.map(option => option.value));
   }
-
-  changeSelection = selection => this.setState({ selection });
 
   render() {
     const options = this.props.articles.map(article => ({
       label: article.title,
       value: article.id,
     }));
-
     return (
       <div>
         <Select
           options={options}
-          value={this.state.selection}
+          value={this.props.selected}
           onChange={this.changeSelection}
           multi
         />
@@ -31,4 +29,5 @@ class SelectComponent extends Component {
 
 export default connect(state => ({
   articles: state.articles,
-}))(SelectComponent);
+  selected: state.filters.selected,
+}), { selectArticle })(SelectComponent);
