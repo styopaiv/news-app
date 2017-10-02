@@ -9,8 +9,7 @@ export default class CommentForm extends Component {
 
     getClassName = (type) => {
       const checkMin = this.state[type].length < limits[type].min;
-      const result = this.state[type].length && checkMin ? 'input-error' : '';
-      return result;
+      return (this.state[type].length && checkMin ? 'input-error' : '');
     };
 
     handleChange = type => (event) => {
