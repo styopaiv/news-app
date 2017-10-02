@@ -31,7 +31,7 @@ class DateRange extends Component {
             {' '}<a href="." onClick={this.handleResetClick}>Reset</a>
           </p>}
         <DayPicker
-          selectedDays={day => DateUtils.isDayInRange(day, { from, to })}
+          selectedDays={[from, { from, to }]}
           onDayClick={this.handleDayClick}
         />
       </div>

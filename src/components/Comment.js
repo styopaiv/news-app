@@ -1,18 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const Comment = ({ comment }) =>
-  (
-    <div>
-      <p>{comment.text}<b> __by {comment.user}</b></p>
-    </div>
-  );
+class Comment extends Component {
+  render() {
+    const { comment } = this.props;
+    return (
+      <div>
+        <p>{comment.text}<b> __by {comment.user}</b></p>
+      </div>
+    );
+  }
+}
 
-Comment.PropTypes = {
-  comment: PropTypes.shape({
-    user: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-  }).isRequired,
-};
-
-export default Comment;
+export default connect((state, ownProps) => (
+  {
+    comment: state.comments.find(comment => comment.id === ownProps.id),
+  }
+))(Comment);

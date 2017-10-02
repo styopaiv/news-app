@@ -16,7 +16,7 @@ const CommentsList = ({ comments = [], isOpen, toggleOpen }) =>
   );
 
 CommentsList.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+  comments: PropTypes.arrayOf(PropTypes.string).isRequired,
   // from toggleOpen
   isOpen: PropTypes.bool,
   toggleOpen: PropTypes.func,
@@ -25,8 +25,8 @@ CommentsList.propTypes = {
 const showComments = (comments, isOpen) => {
   if (!isOpen) return null;
   if (comments.length > 0) {
-    const commentElements = comments.map(comment =>
-      <Comment key={comment.id} comment={comment} />,
+    const commentElements = comments.map(id =>
+      <Comment key={id} id={id} />,
     );
     return commentElements;
   }
