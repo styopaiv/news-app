@@ -29,7 +29,7 @@ class Article extends Component {
   }
 
   handleDelete = () => {
-    const { deleteArticle, article } = this.props; // eslint-disable-line
+    const { deleteArticle, article } = this.props;
     deleteArticle(article.id);
   }
 

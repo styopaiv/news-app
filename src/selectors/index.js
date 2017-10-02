@@ -10,15 +10,19 @@ export const filteredArticlesSelector =
   createSelector(filtersGetter, articlesGetter, (filters, articles) => {
     const { selected, dateRange: { from, to } } = filters;
 
-    const filteredArticles = articles.filter((article) => {
-      const articleDate = Date.parse(article.date);
+    const filteredArticlesIds = Object.keys(articles).filter((articleId) => {
+      const articleDate = Date.parse(articles[articleId].date);
 
-      return ((!selected.length || selected.includes(article.id)) &&
+      return ((!selected.length || selected.includes(articleId)) &&
       (!from || !to || (articleDate > from && articleDate < to)));
     });
-    return filteredArticles;
+
+    return filteredArticlesIds.reduce((acc, id) => {
+      acc[id] = articles[id];
+      return acc;
+    }, {});
   });
 
 export const commentSelectorFactory = () =>
   createSelector(commentsGetter, idGetter, (comments, id) =>
-    comments.find(comment => comment.id === id));
+    comments.get(id));

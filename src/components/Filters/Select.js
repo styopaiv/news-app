@@ -10,9 +10,10 @@ class SelectComponent extends Component {
   }
 
   render() {
-    const options = this.props.articles.map(article => ({
-      label: article.title,
-      value: article.id,
+    const { articles } = this.props;
+    const options = Object.keys(articles).map(article => ({
+      label: articles[article].title,
+      value: articles[article].id,
     }));
     return (
       <div>
