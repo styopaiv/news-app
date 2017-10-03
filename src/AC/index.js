@@ -4,6 +4,7 @@ import {
   RESET,
   SELECT_ARTICLE,
   PICK_DATES,
+  ADD_COMMENT,
 } from '../constants';
 
 export const deleteArticle = id =>
@@ -32,4 +33,11 @@ export const pickDates = range =>
   ({
     type: PICK_DATES,
     payload: range,
+  });
+
+export const addComment = (comment, articleId) =>
+  ({
+    type: ADD_COMMENT,
+    payload: { comment, articleId },
+    generateId: true,
   });

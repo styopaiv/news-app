@@ -23,7 +23,7 @@ class Article extends Component {
     return (
       <section>
         {article.text}
-        <CommentsList comments={article.comments} />
+        <CommentsList article={article} />
       </section>
     );
   }

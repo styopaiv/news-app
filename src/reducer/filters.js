@@ -1,4 +1,4 @@
-import { SELECT_ARTICLE, PICK_DATES } from '../constants';
+import { SELECT_ARTICLE, SELECT_DATES } from '../constants';
 
 const defaultFilters = {
   selected: [],
@@ -15,7 +15,7 @@ export default (filters = defaultFilters, action) => {
     case SELECT_ARTICLE:
       return { ...filters, selected: payload };
 
-    case PICK_DATES:
+    case SELECT_DATES:
       return { ...filters, dateRange: payload };
 
     default: // nothing

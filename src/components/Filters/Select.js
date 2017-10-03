@@ -3,6 +3,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import { connect } from 'react-redux';
 import { selectArticle } from '../../AC';
+import { mapToArr } from '../../helpers';
 
 class SelectComponent extends Component {
   changeSelection = (selected) => {
@@ -11,9 +12,9 @@ class SelectComponent extends Component {
 
   render() {
     const { articles } = this.props;
-    const options = Object.keys(articles).map(article => ({
-      label: articles[article].title,
-      value: articles[article].id,
+    const options = articles.map(article => ({
+      label: article.title,
+      value: article.id,
     }));
     return (
       <div>
@@ -29,6 +30,6 @@ class SelectComponent extends Component {
 }
 
 export default connect(state => ({
-  articles: state.articles,
+  articles: mapToArr(state.articles),
   selected: state.filters.selected,
 }), { selectArticle })(SelectComponent);

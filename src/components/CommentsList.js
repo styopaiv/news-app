@@ -1,36 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
 import Comment from './Comment';
 import toggleOpenDecorator from '../decorators/toggleOpen';
-import CommentForm from './CommentForm/CommentForm';
+import CommentForm from './CommentForm';
 
-const CommentsList = ({ comments = [], isOpen, toggleOpen }) =>
+const CommentsList = ({ article, isOpen, toggleOpen }) =>
   (
     <div>
       <button onClick={toggleOpen}>
         {isOpen ? 'Close Comments' : 'Show Comments'}
       </button>
-      <CommentForm />
-      {showComments(comments, isOpen)}
+      {showComments({ article, isOpen })}
     </div>
   );
 
 CommentsList.propTypes = {
-  comments: PropTypes.arrayOf(PropTypes.string).isRequired,
+  article: PropTypes.object,
   // from toggleOpen
   isOpen: PropTypes.bool,
   toggleOpen: PropTypes.func,
 };
 
-const showComments = (comments, isOpen) => {
+const showComments = ({ article: { comments = [], id }, isOpen }) => {
   if (!isOpen) return null;
   if (comments.length > 0) {
-    const commentElements = comments.map(id =>
-      <Comment key={id} id={id} />,
+    return (
+      <div>
+        <ul>
+          {comments.map(id => <li key={id}><Comment id={id} /></li>)}
+        </ul>
+        <CommentForm articleId={id} />
+      </div>
     );
-    return commentElements;
   }
-  return <p>No comments yet</p>;
+  return (
+    <div>
+      <p>No comments yet</p>;
+      <CommentForm articleId={id} />
+    </div>
+  );
 };
 
 

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addComment } from '../../AC';
 import './style.css';
 
-export default class CommentForm extends Component {
+class CommentForm extends Component {
     state = {
       user: '',
       text: '',
@@ -20,8 +22,9 @@ export default class CommentForm extends Component {
       });
     }
 
-    handleSubmit = (event) => {
+    addComment = (event) => {
       event.preventDefault();
+      this.props.addComment(this.state, this.props.articleId);
       this.setState({
         user: '',
         text: '',
@@ -30,7 +33,7 @@ export default class CommentForm extends Component {
 
     render() {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.addComment}>
           User name:
           <input
             value={this.state.user}
@@ -38,7 +41,7 @@ export default class CommentForm extends Component {
             className={this.getClassName('user')}
           />
           Comment:
-          <input
+          <textarea
             value={this.state.text}
             onChange={this.handleChange('text')}
             className={this.getClassName('text')}
@@ -48,6 +51,7 @@ export default class CommentForm extends Component {
       );
     }
 }
+
 
 const limits = {
   user: {
@@ -59,3 +63,5 @@ const limits = {
     max: 50,
   },
 };
+
+export default connect(null, { addComment })(CommentForm);

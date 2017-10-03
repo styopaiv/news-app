@@ -8,6 +8,6 @@ export const FILTER_SELECTED = 'FILTER_SELECTED';
 
 export const SELECT_ARTICLE = 'SELECT_ARTICLE';
 
-export const PICK_DATES = 'PICK_DATES';
+export const SELECT_DATES = 'SELECT_DATES';
 
-export const FILTER_BY_DATES = 'FILTER_BY_DATES';
+export const ADD_COMMENT = 'ADD_COMMENT';
