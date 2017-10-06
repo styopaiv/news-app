@@ -4,7 +4,8 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import './style.css';
 import CommentsList from '../CommentsList';
-import { deleteArticle } from '../../AC';
+import { deleteArticle, loadArticle } from '../../AC';
+import Loader from '../Loader';
 
 class Article extends Component {
   static propTypes = {
@@ -17,9 +18,14 @@ class Article extends Component {
     toggleOpen: PropTypes.func,
   }
 
+  componentWillReceiveProps({isOpen, loadArticle, article }) {
+    if (isOpen && !article.text && !article.loading) loadArticle(article.id);
+  }
+
   getBody() {
     const { isOpen, article } = this.props;
     if (!isOpen) return null;
+    if (article.loading) return <Loader />;
     return (
       <section>
         {article.text}
@@ -54,4 +60,4 @@ class Article extends Component {
   }
 }
 
-export default connect(null, { deleteArticle })(Article);
+export default connect(null, { deleteArticle, loadArticle })(Article);

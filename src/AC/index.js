@@ -3,9 +3,13 @@ import {
   INCREMENT,
   RESET,
   SELECT_ARTICLE,
-  PICK_DATES,
+  SELECT_DATES,
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
+  LOAD_ARTICLE,
+  START,
+  SUCCESS,
+  FAIL,
 } from '../constants';
 
 export const deleteArticle = id =>
@@ -32,7 +36,7 @@ export const selectArticle = selected =>
 
 export const pickDates = range =>
   ({
-    type: PICK_DATES,
+    type: SELECT_DATES,
     payload: range,
   });
 
@@ -43,9 +47,29 @@ export const addComment = (comment, articleId) =>
     generateId: true,
   });
 
-export const loadAllArticles = route =>
+export const loadAllArticles = () =>
   ({
     type: LOAD_ALL_ARTICLES,
-    payload: route,
     callAPI: 'api/article',
   });
+
+export const loadArticle = id =>
+  (dispatch) => {
+    dispatch({
+      type: LOAD_ARTICLE + START,
+      payload: { id },
+    });
+
+    setTimeout(() => {
+      fetch(`/api/article/${id}`)
+        .then(res => res.json())
+        .then(response => dispatch({
+          type: LOAD_ARTICLE + SUCCESS,
+          payload: { id, response },
+        }))
+        .catch(error => dispatch({
+          type: LOAD_ARTICLE + FAIL,
+          payload: { id, error },
+        }))
+    }, 1000);
+  };

@@ -8,6 +8,7 @@ import { pickDates } from '../../AC';
 class DateRange extends Component {
   handleDayClick = (day) => {
     const range = DateUtils.addDayToRange(day, this.props.range);
+    console.log(range)
     this.props.pickDates(range);
   };
 
