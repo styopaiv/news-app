@@ -5,6 +5,7 @@ import Article from './Article/';
 import accordionDecorator from '../decorators/accordion';
 import { filteredArticlesSelector } from '../selectors';
 import { mapToArr } from '../helpers';
+import { loadAllArticles } from '../AC';
 
 class ArticleList extends Component {
   static propTypes = {
@@ -13,6 +14,10 @@ class ArticleList extends Component {
     // from accordion
     openItemId: PropTypes.string,
     toggleOpenItem: PropTypes.func.isRequired,
+  }
+
+  componentWillMount() {
+    this.props.loadAllArticles();
   }
 
   render() {
@@ -40,4 +45,4 @@ export default connect(state => (
   {
     articles: filteredArticlesSelector(state),
   }
-))(accordionDecorator(ArticleList));
+), { loadAllArticles })(accordionDecorator(ArticleList));
