@@ -47,5 +47,5 @@ export const loadAllArticles = route =>
   ({
     type: LOAD_ALL_ARTICLES,
     payload: route,
-    callApi: 'api/article',
+    callAPI: 'api/article',
   });

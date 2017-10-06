@@ -1,7 +1,6 @@
-export const arrToMap = arr =>
-  arr.reduce((acc, item) => {
-    acc[item.id] = item;
-    return acc;
-  }, {});
+import { Map, OrderedMap } from 'immutable';
 
-export const mapToArr = obj => Object.keys(obj).map(id => obj[id]);
+export const arrToMap = (arr, DataRecord = Map) =>
+  arr.reduce((acc, item) => acc.set(item.id, new DataRecord(item)), new OrderedMap({}));
+
+export const mapToArr = map => map.valueSeq().toArray();

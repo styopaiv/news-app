@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
 import Article from './Article/';
+import Loader from './Loader';
+
 import accordionDecorator from '../decorators/accordion';
 import { filteredArticlesSelector } from '../selectors';
-import { mapToArr } from '../helpers';
 import { loadAllArticles } from '../AC';
 
 class ArticleList extends Component {
@@ -16,14 +18,15 @@ class ArticleList extends Component {
     toggleOpenItem: PropTypes.func.isRequired,
   }
 
-  componentWillMount() {
-    this.props.loadAllArticles();
+  componentDidMount() {
+    const { loaded, loading, loadAllArticles } = this.props;
+    if (!loaded || !loading) loadAllArticles();
   }
 
   render() {
-    const { articles, openItemId, toggleOpenItem } = this.props;
-
-    const articleElements = mapToArr(articles).map(article =>
+    const { articles, openItemId, toggleOpenItem, loading } = this.props;
+    if (loading) return <Loader />;
+    const articleElements = articles.map(article =>
       (
         <li key={article.id}>
           <Article
@@ -44,5 +47,7 @@ class ArticleList extends Component {
 export default connect(state => (
   {
     articles: filteredArticlesSelector(state),
+    loading: state.articles.loading,
+    loaded: state.articles.loaded,
   }
 ), { loadAllArticles })(accordionDecorator(ArticleList));
