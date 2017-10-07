@@ -46,7 +46,10 @@ class CommentForm extends Component {
             onChange={this.handleChange('text')}
             className={this.getClassName('text')}
           />
-          <input type="submit" value="Submit" />
+          <input
+            type="submit"
+            value="Submit"
+          />
         </form>
       );
     }

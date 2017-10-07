@@ -5,6 +5,7 @@ import {
   SELECT_ARTICLE,
   SELECT_DATES,
   ADD_COMMENT,
+  LOAD_ARTICLE_COMMENTS,
   LOAD_ALL_ARTICLES,
   LOAD_ARTICLE,
   START,
@@ -47,6 +48,30 @@ export const addComment = (comment, articleId) =>
     generateId: true,
   });
 
+  // (dispatch) => {
+  //   fetch('api/comment', {
+  //     method: 'post',
+  //     body: comment,
+  //   })
+  //     .then(res => res.json())
+  //     .then(response => dispatch({
+  //       type: ADD_COMMENT,
+  //       payload: { response, articleId },
+  //     }))
+  //     .catch(error => dispatch({
+  //       type: ADD_COMMENT + FAIL,
+  //       payload: { error },
+  //     }));
+  // };
+
+
+export const loadArticleComments = articleId =>
+  ({
+    type: LOAD_ARTICLE_COMMENTS,
+    payload: { articleId },
+    callAPI: `/api/comment?article=${articleId}`,
+  });
+
 export const loadAllArticles = () =>
   ({
     type: LOAD_ALL_ARTICLES,
@@ -70,6 +95,6 @@ export const loadArticle = id =>
         .catch(error => dispatch({
           type: LOAD_ARTICLE + FAIL,
           payload: { id, error },
-        }))
+        }));
     }, 1000);
   };

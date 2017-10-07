@@ -5,11 +5,15 @@ import { commentSelectorFactory } from '../selectors';
 class Comment extends Component {
   render() {
     const { comment } = this.props;
-    return (
-      <div>
-        <p>{comment.text}<b> __by {comment.user}</b></p>
-      </div>
-    );
+
+    if (comment) {
+      return (
+        <div>
+          <p>{comment.text}<b> __by {comment.user}</b></p>
+        </div>
+      );
+    }
+    return null;
   }
 }
 
