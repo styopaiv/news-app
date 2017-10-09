@@ -16,3 +16,4 @@ export default store => next => (action) => { // eslint-disable-line
       .catch(error => next({ ...rest, type: type + FAIL, error }));
   }, 1500);
 };
+

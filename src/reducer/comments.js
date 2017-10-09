@@ -1,5 +1,5 @@
 import { OrderedMap, Record } from 'immutable';
-import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, START, SUCCESS } from '../constants';
+import { ADD_COMMENT, LOAD_ARTICLE_COMMENTS, SUCCESS } from '../constants';
 import { arrToMap } from '../helpers';
 
 const CommentRecord = Record({
