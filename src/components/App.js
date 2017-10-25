@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { HashRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink, Switch } from 'react-router-dom';
 
-import Articles from '../routes/Articles';
+import Articles from './routes/Articles';
+import newArticle from './routes/NewArticle';
+import NotFound from './routes/NotFound';
 import Filters from './Filters';
 import Counter from './Counter';
 
@@ -16,9 +18,13 @@ export default class App extends Component {
             <div><NavLink to="/articles" activeStyle={{ color: '#aac493' }}>Articles</NavLink></div>
             <div><NavLink to="/filters" activeStyle={{ color: '#aac493' }}>Filters</NavLink></div>
           </div>
-          <Route path="/counter" component={Counter} />
-          <Route path="/articles" component={Articles} />
-          <Route path="/filters" component={Filters} />
+          <Switch>
+            <Route path="/counter" component={Counter} />
+            <Route path="/articles/new" component={newArticle} />
+            <Route path="/articles" component={Articles} />
+            <Route path="/filters" component={Filters} />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </div>
       </Router>
     );
