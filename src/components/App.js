@@ -6,6 +6,7 @@ import newArticle from './routes/NewArticle';
 import NotFound from './routes/NotFound';
 import Filters from './Filters';
 import Counter from './Counter';
+import Comments from './routes/Comments';
 
 export default class App extends Component {
   render() {
@@ -17,12 +18,14 @@ export default class App extends Component {
             <div><NavLink to="/counter" activeStyle={{ color: '#aac493' }}>Counter</NavLink></div>
             <div><NavLink to="/articles" activeStyle={{ color: '#aac493' }}>Articles</NavLink></div>
             <div><NavLink to="/filters" activeStyle={{ color: '#aac493' }}>Filters</NavLink></div>
+            <div><NavLink to="/comments/1" activeStyle={{ color: '#aac493' }}>Comments</NavLink></div>
           </div>
           <Switch>
             <Route path="/counter" component={Counter} />
             <Route path="/articles/new" component={newArticle} />
             <Route path="/articles" component={Articles} />
             <Route path="/filters" component={Filters} />
+            <Route path="/comments/:page" component={Comments} />
             <Route path="*" component={NotFound} />
           </Switch>
         </div>

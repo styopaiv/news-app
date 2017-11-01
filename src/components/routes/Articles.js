@@ -9,9 +9,7 @@ class Articles extends Component {
     return <Article id={id} isOpen key={id} />;
   }
 
-  getIndex = () => {
-    return <h1>Please select article</h1>
-  }
+  getIndex = () => <h1>Please select article</h1>;
 
   render() {
     return (

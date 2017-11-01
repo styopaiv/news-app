@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { filteredArticlesSelector } from '../selectors';
+import { loadAllArticles } from '../AC';
 
 import Loader from './Loader';
 
-import { filteredArticlesSelector } from '../selectors';
-import { loadAllArticles } from '../AC';
 
 class ArticleList extends Component {
   static propTypes = {
@@ -14,7 +14,7 @@ class ArticleList extends Component {
     articles: PropTypes.array.isRequired,
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { loaded, loading, loadAllArticles } = this.props;
     if (!loaded && !loading) loadAllArticles();
   }

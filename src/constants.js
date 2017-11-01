@@ -11,6 +11,7 @@ export const SELECT_DATES = 'SELECT_DATES';
 
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const LOAD_ARTICLE_COMMENTS = 'LOAD_ARTICLE_COMMENTS';
+export const LOAD_PAGE_COMMENTS = 'LOAD_PAGE_COMMENTS';
 
 export const START = '_START';
 export const SUCCESS = '_SUCCESS';

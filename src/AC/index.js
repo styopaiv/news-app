@@ -6,6 +6,7 @@ import {
   SELECT_DATES,
   ADD_COMMENT,
   LOAD_ARTICLE_COMMENTS,
+  LOAD_PAGE_COMMENTS,
   LOAD_ALL_ARTICLES,
   LOAD_ARTICLE,
   START,
@@ -71,6 +72,18 @@ export const loadArticleComments = articleId =>
     payload: { articleId },
     callAPI: `/api/comment?article=${articleId}`,
   });
+
+export const checkAndLoadPageComments = page =>
+  (dispatch, getState) => {
+    const { comments: { pagination } } = getState();
+    if (pagination.getIn([page, 'loading']) || pagination.getIn([page, 'ids'])) return;
+
+    dispatch({
+      type: LOAD_PAGE_COMMENTS,
+      payload: { page },
+      callAPI: `/api/comment?limit=5&offset=${(page - 1) * 5}`,
+    });
+  };
 
 export const loadAllArticles = () =>
   ({

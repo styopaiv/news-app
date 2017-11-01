@@ -4,6 +4,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import './style.css';
 import CommentsList from '../CommentsList';
+import toggleOpenDecorator from '../../decorators/toggleOpen';
 import { deleteArticle, loadArticle } from '../../AC';
 import Loader from '../Loader';
 
@@ -66,4 +67,4 @@ class Article extends Component {
 
 export default connect((state, ownProps) => ({
   article: state.articles.entities.get(ownProps.id),
-}), { deleteArticle, loadArticle })(Article);
+}), { deleteArticle, loadArticle })(toggleOpenDecorator(Article));
