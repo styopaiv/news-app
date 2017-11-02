@@ -18,6 +18,7 @@ class Pagination extends Component {
 
   getPaginator() {
     const { totalComments } = this.props;
+
     const pagesAmount = Math.ceil(totalComments / 5);
     return [...Array(pagesAmount + 1).keys()].slice(1).map(pageNum =>
       (
@@ -38,8 +39,8 @@ class Pagination extends Component {
 
   render() {
     const { totalComments } = this.props;
+
     if (!totalComments) return <Loader />;
-    console.log(this.props);
     return (
       <div>
         {this.getPageComments()}

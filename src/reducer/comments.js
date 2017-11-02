@@ -34,7 +34,6 @@ export default (commentsState = defaultState, action) => {
     }
 
     case LOAD_PAGE_COMMENTS + SUCCESS: {
-      console.log(response);
       return commentsState
         .set('totalComments', response.total)
         .mergeIn(['entities'], arrToMap(response.records, CommentRecord))
