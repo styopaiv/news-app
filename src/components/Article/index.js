@@ -4,7 +4,7 @@ import { CSSTransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import './style.css';
 import CommentsList from '../CommentsList';
-import toggleOpenDecorator from '../../decorators/toggleOpen';
+// import toggleOpenDecorator from '../../decorators/toggleOpen';
 import { deleteArticle, loadArticle } from '../../AC';
 import Loader from '../Loader';
 
@@ -12,7 +12,6 @@ class Article extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     isOpen: PropTypes.bool,
-    toggleOpen: PropTypes.func,
     // from connect
     article: PropTypes.shape({
       id: PropTypes.string,
@@ -21,14 +20,16 @@ class Article extends Component {
     }),
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { loadArticle, article, id } = this.props;
     if (!article || (!article.text && !article.loading)) loadArticle(id);
   }
 
   getBody() {
     const { isOpen, article } = this.props;
+
     if (!isOpen) return null;
+
     if (article.loading) return <Loader />;
     return (
       <section>
@@ -44,14 +45,14 @@ class Article extends Component {
   }
 
   render() {
-    const { article, toggleOpen, isOpen } = this.props;
+    const { article } = this.props;
     if (!article) return null;
     return (
       <div>
         <h3>{article.title}</h3>
-        <button onClick={toggleOpen}>
+        {/* <button onClick={toggleOpen}>
           {isOpen ? 'close' : 'open'}
-        </button>
+        </button> */}
         <button onClick={this.handleDelete}>Delete article</button>
         <CSSTransitionGroup
           transitionName="article"
@@ -67,4 +68,4 @@ class Article extends Component {
 
 export default connect((state, ownProps) => ({
   article: state.articles.entities.get(ownProps.id),
-}), { deleteArticle, loadArticle })(toggleOpenDecorator(Article));
+}), { deleteArticle, loadArticle })(Article);

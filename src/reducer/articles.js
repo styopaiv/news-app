@@ -38,17 +38,20 @@ export default (articleState = defaultState, action) => {
     }
 
     case LOAD_ALL_ARTICLES + SUCCESS: {
-      return articleState.set('entities', arrToMap(response, ArticleRecord))
+      return articleState
+        .set('entities', arrToMap(response, ArticleRecord))
         .set('loading', false)
         .set('loaded', true);
     }
 
     case LOAD_ARTICLE + START: {
-      return articleState.setIn(['entities', payload.id, 'loading'], true);
+      return articleState
+        .setIn(['entities', payload.id, 'loading'], true);
     }
 
     case LOAD_ARTICLE + SUCCESS: {
-      return articleState.setIn(['entities', payload.id], new ArticleRecord(payload.response));
+      return articleState
+        .setIn(['entities', payload.id], new ArticleRecord(payload.response));
     }
 
     case LOAD_ARTICLE_COMMENTS + START: {

@@ -14,6 +14,6 @@ export default store => next => (action) => { // eslint-disable-line
       .then(res => res.json())
       .then(response => next({ ...rest, type: type + SUCCESS, response }))
       .catch(error => next({ ...rest, type: type + FAIL, error }));
-  }, 1000);
+  }, 500);
 };
 

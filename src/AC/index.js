@@ -88,7 +88,7 @@ export const checkAndLoadPageComments = page =>
 export const loadAllArticles = () =>
   ({
     type: LOAD_ALL_ARTICLES,
-    callAPI: 'api/article',
+    callAPI: '/api/article',
   });
 
 export const loadArticle = id =>

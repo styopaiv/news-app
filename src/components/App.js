@@ -28,8 +28,8 @@ export default class App extends Component {
             <Route path="/articles" component={Articles} />
             <Route path="/filters" component={Filters} />
             <Route path="/comments" component={Comments} />
-            <Redirect from="/comments" to="/comments/1" />
             <Route path="*" component={NotFound} />
+            <Redirect from="/comments" to="/comments/1" />
           </Switch>
         </div>
       </ConnectedRouter>

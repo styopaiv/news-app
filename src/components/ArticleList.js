@@ -14,7 +14,7 @@ class ArticleList extends Component {
     articles: PropTypes.array.isRequired,
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const { loaded, loading, loadAllArticles } = this.props;
     if (!loaded && !loading) loadAllArticles();
   }
