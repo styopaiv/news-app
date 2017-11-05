@@ -1,3 +1,13 @@
+.article {
+	width: 780px;
+}
+
+.article-body {
+	border: 1px solid grey;
+	margin-left: 25px;
+	padding: 10px;
+}
+
 .article-enter {
   opacity: 0.01;
 }
@@ -15,3 +25,54 @@
   opacity: 0.01;
   transition: opacity 300ms ease-in;
 }
+
+.article-title {
+	margin-left: 25px;	
+	padding: 0;
+	background-color: rgba(175, 174, 177, 0.76);
+  display: flex;
+}
+
+
+.article-title h2 {
+	font-size: 30px;
+	margin-left: 10px;	
+  margin-right: 20px;
+}
+
+.article-title button {
+	margin-left: auto;
+	margin-right: 20px;
+}
+
+.btn {
+  height: 25px;
+  align-self: center;
+	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	background-color:rgba(108, 89, 128, 0.308);
+	border-radius:6px;
+	border:1px solid #000;
+	display:inline-block;
+	cursor:pointer;
+	color:#fff;
+	font-size:15px;
+  font-weight: normal;
+  padding: 0 10px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+}
+
+.btn:hover {
+	background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+	background-color:#dfdfdf;
+}
+
+.btn:active {
+	position:relative;
+	top:1px;
+}
+
+.article-loader {
+	margin-left: 250px;
+}
+

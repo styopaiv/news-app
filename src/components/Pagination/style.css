@@ -1,0 +1,46 @@
+.all-comments {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+}
+
+.paginator {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  align-self: end;
+  padding: 0;
+  list-style: none;
+}
+
+.paginator li {
+  text-align: center;
+}
+
+.paginator li a {
+  display: block;
+  width: 30px;
+  margin-right: 10px;
+  color: #000;
+  border: 1px solid #000;
+  text-decoration: none;
+}
+
+.paginator li a:hover {
+  color: #aac493;
+  background-color: #000;
+}
+
+.page-comments {
+  padding: 0;
+  list-style: none;
+  margin-bottom: 40px;
+}
+
+.page-comments li {
+  padding: 5px;
+  border: 1px solid #000;
+  margin-bottom: 10px;
+}

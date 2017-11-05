@@ -1,3 +1,23 @@
+.comment-form {
+  margin-left: 50px;
+  display: flex;
+}
+
 .input-error {
   background-color: red;
+}
+
+.comment-form-username {
+  display: flex;
+  flex-direction: column;
+  margin-right: 40px;
+}
+
+.comment-form-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form-btn {
+  margin-left: 20px;
 }

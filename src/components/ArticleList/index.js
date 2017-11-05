@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { filteredArticlesSelector } from '../selectors';
-import { loadAllArticles } from '../AC';
+import { filteredArticlesSelector } from '../../selectors';
+import { loadAllArticles } from '../../AC';
 
-import Loader from './Loader';
+import './style.css';
+
+import Loader from '../Loader';
 
 
 class ArticleList extends Component {
@@ -21,19 +23,29 @@ class ArticleList extends Component {
 
   render() {
     const { articles, loading } = this.props;
-    if (loading) return <Loader />;
+    if (loading) {
+      return (<div className="article-list-loader">
+        <Loader />
+      </div>);
+    }
+
     const articleElements = articles.map(article =>
       (
-        <li key={article.id}>
-          <NavLink to={`/articles/${article.id}`} activeStyle={{ color: '#aac493' }}>
+        <li key={article.id} className="articles-list-item">
+          <NavLink to={`/articles/${article.id}`} activeStyle={{ color: '#000' }}>
+            {article.date}
             {article.title}
           </NavLink>
         </li>
       ));
+
     return (
-      <ul>
-        {articleElements}
-      </ul>
+      <div>
+        <h2 className="articles-list-title">Articles</h2>
+        <ul className="articles-list">
+          {articleElements}
+        </ul>
+      </div>
     );
   }
 }
@@ -44,4 +56,4 @@ export default connect(state => (
     loading: state.articles.loading,
     loaded: state.articles.loaded,
   }
-), { loadAllArticles })(ArticleList);
+), { loadAllArticles }, null, { pure: false })(ArticleList);

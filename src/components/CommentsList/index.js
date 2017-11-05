@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './style.css';
 
-import Comment from './Comment';
-import CommentForm from './CommentForm';
-import Loader from './Loader';
+import Comment from '../Comment';
+import CommentForm from '../CommentForm';
+import Loader from '../Loader';
 
-import toggleOpenDecorator from '../decorators/toggleOpen';
-import { loadArticleComments } from '../AC';
+import toggleOpenDecorator from '../../decorators/toggleOpen';
+import { loadArticleComments } from '../../AC';
+
 
 class CommentsList extends Component {
   static propTypes = {
@@ -33,7 +35,7 @@ class CommentsList extends Component {
     if (comments.length > 0) {
       return (
         <div>
-          <ul>
+          <ul className="comments-list">
             {comments.map(id => <li key={id}><Comment id={id} /></li>)}
           </ul>
           <CommentForm articleId={id} />
@@ -43,7 +45,7 @@ class CommentsList extends Component {
 
     return (
       <div>
-        <p>No comments yet</p>;
+        <p>No comments yet</p>
         <CommentForm articleId={id} />
       </div>
     );
@@ -53,7 +55,7 @@ class CommentsList extends Component {
     const { toggleOpen, isOpen, article } = this.props;
     return (
       <div>
-        <button onClick={toggleOpen}>
+        <button className="show-comments-btn btn" onClick={toggleOpen}>
           {isOpen ? 'Close Comments' : 'Show Comments'}
         </button>
         {this.showComments({ article, isOpen })}

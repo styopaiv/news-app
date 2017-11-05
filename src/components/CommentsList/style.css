@@ -1,0 +1,16 @@
+.comments-list {
+  padding: 0;
+  margin-left: 25px;
+  list-style: none;
+}
+
+.comments-list li {
+  border: 1px solid #000;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.show-comments-btn {
+  margin-bottom: 20px;
+  margin-left: 25px;
+}

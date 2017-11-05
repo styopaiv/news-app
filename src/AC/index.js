@@ -1,3 +1,4 @@
+import { replace } from 'react-router-redux';
 import {
   DELETE_ARTICLE,
   INCREMENT,
@@ -13,6 +14,7 @@ import {
   SUCCESS,
   FAIL,
 } from '../constants';
+
 
 export const deleteArticle = id =>
   ({
@@ -49,23 +51,6 @@ export const addComment = (comment, articleId) =>
     generateId: true,
   });
 
-  // (dispatch) => {
-  //   fetch('api/comment', {
-  //     method: 'post',
-  //     body: comment,
-  //   })
-  //     .then(res => res.json())
-  //     .then(response => dispatch({
-  //       type: ADD_COMMENT,
-  //       payload: { response, articleId },
-  //     }))
-  //     .catch(error => dispatch({
-  //       type: ADD_COMMENT + FAIL,
-  //       payload: { error },
-  //     }));
-  // };
-
-
 export const loadArticleComments = articleId =>
   ({
     type: LOAD_ARTICLE_COMMENTS,
@@ -100,14 +85,24 @@ export const loadArticle = id =>
 
     setTimeout(() => {
       fetch(`/api/article/${id}`)
-        .then(res => res.json())
+        .then((res) => {
+          if (res.status >= 400) {
+            throw new Error(res.statusText);
+          }
+          return res.json();
+        })
+
         .then(response => dispatch({
           type: LOAD_ARTICLE + SUCCESS,
           payload: { id, response },
         }))
-        .catch(error => dispatch({
-          type: LOAD_ARTICLE + FAIL,
-          payload: { id, error },
-        }));
+
+        .catch((error) => {
+          dispatch({
+            type: LOAD_ARTICLE + FAIL,
+            payload: { id, error },
+          });
+          dispatch(replace('/error'));
+        });
     }, 1000);
   };

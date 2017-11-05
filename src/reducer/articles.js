@@ -6,6 +6,7 @@ const ArticleRecord = Record({
   text: undefined,
   title: undefined,
   id: undefined,
+  theme: undefined,
   loading: false,
   commentsLoading: false,
   commentsLoaded: false,
@@ -22,7 +23,6 @@ const defaultState = new ReducerState();
 
 export default (articleState = defaultState, action) => {
   const { type, payload, randomId, response } = action;
-
   switch (type) {
     case DELETE_ARTICLE: {
       return articleState.deleteIn(['entities', payload.id]);
@@ -39,7 +39,7 @@ export default (articleState = defaultState, action) => {
 
     case LOAD_ALL_ARTICLES + SUCCESS: {
       return articleState
-        .set('entities', arrToMap(response, ArticleRecord))
+        .update('entities', entities => arrToMap(response, ArticleRecord).merge(entities))
         .set('loading', false)
         .set('loaded', true);
     }

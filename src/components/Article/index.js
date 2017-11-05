@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CSSTransitionGroup } from 'react-transition-group';
 import { connect } from 'react-redux';
 import './style.css';
-import CommentsList from '../CommentsList';
-// import toggleOpenDecorator from '../../decorators/toggleOpen';
+import CommentsList from '../CommentsList/';
 import { deleteArticle, loadArticle } from '../../AC';
 import Loader from '../Loader';
 
@@ -30,10 +28,12 @@ class Article extends Component {
 
     if (!isOpen) return null;
 
-    if (article.loading) return <Loader />;
+    if (article.loading) return <div className="article-loader"><Loader /></div>;
     return (
       <section>
-        {article.text}
+        <div className="article-body">
+          {article.text}
+        </div>
         <CommentsList article={article} />
       </section>
     );
@@ -48,19 +48,12 @@ class Article extends Component {
     const { article } = this.props;
     if (!article) return null;
     return (
-      <div>
-        <h3>{article.title}</h3>
-        {/* <button onClick={toggleOpen}>
-          {isOpen ? 'close' : 'open'}
-        </button> */}
-        <button onClick={this.handleDelete}>Delete article</button>
-        <CSSTransitionGroup
-          transitionName="article"
-          transitionEnterTimeout={1000}
-          transitionLeaveTimeout={300}
-        >
-          {this.getBody()}
-        </CSSTransitionGroup>
+      <div className="article">
+        <div className="article-title">
+          <h2>{article.title}</h2>
+          <button className="btn" onClick={this.handleDelete}>Delete article</button>
+        </div>
+        {this.getBody()}
       </div>
     );
   }

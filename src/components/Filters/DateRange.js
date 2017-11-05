@@ -8,7 +8,6 @@ import { pickDates } from '../../AC';
 class DateRange extends Component {
   handleDayClick = (day) => {
     const range = DateUtils.addDayToRange(day, this.props.range);
-    console.log(range)
     this.props.pickDates(range);
   };
 
@@ -29,7 +28,7 @@ class DateRange extends Component {
             {' '}
             {moment(to).format('L')}
             .
-            {' '}<a href="." onClick={this.handleResetClick}>Reset</a>
+            {/* {' '}<a href="." onClick={this.handleResetClick}>Reset</a> */}
           </p>}
         <DayPicker
           selectedDays={[from, { from, to }]}

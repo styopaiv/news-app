@@ -13,12 +13,13 @@ class SelectComponent extends Component {
   render() {
     const { articles } = this.props;
     const options = articles.map(article => ({
-      label: article.title,
+      label: article.theme,
       value: article.id,
     }));
     return (
       <div>
         <Select
+          placeholder="Select topic"
           options={options}
           value={this.props.selected}
           onChange={this.changeSelection}

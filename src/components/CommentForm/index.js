@@ -33,20 +33,27 @@ class CommentForm extends Component {
 
     render() {
       return (
-        <form onSubmit={this.addComment}>
-          User name:
+        <form className="comment-form" onSubmit={this.addComment}>
+          <div className="comment-form-username">
+            <span>User name:</span>
+            <input
+              value={this.state.user}
+              onChange={this.handleChange('user')}
+              className={this.getClassName('user')}
+            />
+          </div>
+          <div className="comment-form-text">
+            Comment:
+            <textarea
+              rows="5"
+              cols="50"
+              value={this.state.text}
+              onChange={this.handleChange('text')}
+              className={this.getClassName('text')}
+            />
+          </div>
           <input
-            value={this.state.user}
-            onChange={this.handleChange('user')}
-            className={this.getClassName('user')}
-          />
-          Comment:
-          <textarea
-            value={this.state.text}
-            onChange={this.handleChange('text')}
-            className={this.getClassName('text')}
-          />
-          <input
+            className="comment-form-btn btn"
             type="submit"
             value="Submit"
           />

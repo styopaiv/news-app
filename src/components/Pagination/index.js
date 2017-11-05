@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { checkAndLoadPageComments } from '../AC';
+import { checkAndLoadPageComments } from '../../AC';
+import './style.css';
 
-import Loader from '../components/Loader';
-import Comment from '../components/Comment';
+import Loader from '../../components/Loader';
+import Comment from '../../components/Comment';
 
 class Pagination extends Component {
   componentWillMount() {
@@ -20,12 +21,16 @@ class Pagination extends Component {
     const { totalComments } = this.props;
 
     const pagesAmount = Math.ceil(totalComments / 5);
-    return [...Array(pagesAmount + 1).keys()].slice(1).map(pageNum =>
+    const pages = [...Array(pagesAmount + 1).keys()].slice(1).map(pageNum =>
       (
-        <NavLink to={`/comments/${pageNum}`} key={pageNum}>
-          {pageNum}
-        </NavLink>),
+        <li>
+          <NavLink to={`/comments/${pageNum}`} key={pageNum}>
+            {pageNum}
+          </NavLink>
+        </li>),
     );
+
+    return <ul className="paginator">{pages}</ul>;
   }
 
 
@@ -34,15 +39,16 @@ class Pagination extends Component {
     if (loading || !comments) return <Loader />;
 
     const pageComments = comments.map(id => <li key={id}><Comment id={id} /></li>);
-    return <ul>{pageComments}</ul>;
+    return <ul className="page-comments">{pageComments}</ul>;
   }
 
   render() {
     const { totalComments } = this.props;
 
     if (!totalComments) return <Loader />;
+
     return (
-      <div>
+      <div className="all-comments">
         {this.getPageComments()}
         {this.getPaginator()}
       </div>

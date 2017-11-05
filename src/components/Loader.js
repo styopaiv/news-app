@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class Loader extends Component {
-  render () {
+  render() {
     return (
       <div>
-        <h2>...Loading</h2>
+        <img src={'/../src/img/giphy.gif'} alt="Loading" />
       </div>
-    )
+    );
   }
 }
 

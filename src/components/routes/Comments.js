@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-import Pagination from '../Pagination';
+import Pagination from '../Pagination/';
 
 const Comments = ({ match }) => {
   if (match.isExact) return <Redirect to="/comments/1" />;
@@ -9,4 +9,5 @@ const Comments = ({ match }) => {
 };
 
 const getPaginator = ({ match }) => <Pagination page={match.params.page} />;
+
 export default Comments;
