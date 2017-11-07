@@ -1,1 +1,4 @@
-learning react
+**Installation**
+```
+$ npm i && npm start
+```
