@@ -9,16 +9,13 @@ import Comments from './routes/Comments';
 import Header from './Header/';
 
 export default class App extends Component {
-  getIndexPage = () => <Articles />
-
-
   render() {
     return (
       <ConnectedRouter history={history}>
         <div>
           <Header />
           <Switch>
-            <Route path="/" render={this.getIndexPage} exact />
+            <Route path="/" component={Articles} exact />
             <Route path="/articles/:id" component={Articles} />
             <Route path="/comments" component={Comments} />
             <Route path="*" component={NotFound} />
