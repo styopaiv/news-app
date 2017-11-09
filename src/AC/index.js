@@ -22,16 +22,6 @@ export const deleteArticle = id =>
     payload: { id },
   });
 
-export const increment = () =>
-  ({
-    type: INCREMENT,
-  });
-
-export const reset = () =>
-  ({
-    type: RESET,
-  });
-
 export const selectArticle = selected =>
   ({
     type: SELECT_ARTICLE,
