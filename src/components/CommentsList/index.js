@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './style.css';
 
-import Comment from '../Comment';
+import Comment from '../Comment/';
 import CommentForm from '../CommentForm';
 import Loader from '../Loader';
 

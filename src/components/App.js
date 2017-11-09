@@ -9,10 +9,8 @@ import Comments from './routes/Comments';
 import Header from './Header/';
 
 export default class App extends Component {
-  getIndexPage = () =>
-    (<div>
-      <Articles />
-    </div>);
+  getIndexPage = () => <Articles />
+
 
   render() {
     return (

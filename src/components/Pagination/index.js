@@ -5,7 +5,7 @@ import { checkAndLoadPageComments } from '../../AC';
 import './style.css';
 
 import Loader from '../../components/Loader';
-import Comment from '../../components/Comment';
+import Comment from '../../components/Comment/';
 
 class Pagination extends Component {
   componentWillMount() {

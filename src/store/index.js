@@ -4,10 +4,9 @@ import { routerMiddleware } from 'react-router-redux';
 import history from '../history';
 import reducer from '../reducer';
 import generateId from '../middlewares/generateId';
-import logger from '../middlewares/logger';
 import api from '../middlewares/api';
 
-const enhancer = applyMiddleware(thunk, routerMiddleware(history), generateId, api, logger);
+const enhancer = applyMiddleware(thunk, routerMiddleware(history), generateId, api);
 
 const store = createStore(reducer, {}, enhancer);
 

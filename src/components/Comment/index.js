@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { commentSelectorFactory } from '../selectors';
+import { commentSelectorFactory } from '../../selectors';
 
 class Comment extends Component {
   render() {
